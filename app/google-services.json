@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "942417743600-5q5vk54tv6dj27pvthh1jg32giik6tk2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.sandec.habitoaster",
+            "certificate_hash": "cdcb5480dc5781a5f1b8d0d58cd45b8375cdba57"
+          }
+        },
+        {
           "client_id": "942417743600-7fqnsd4g95vhrsodemg81qi6mgnn7214.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
