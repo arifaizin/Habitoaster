@@ -21,9 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddHa"
+            android:name=".AddHabitActivity"
             android:label="@string/app_name">
         </activity>
+        <activity android:name=".login"></activity>
+
     </application>
 
 </manifest>
