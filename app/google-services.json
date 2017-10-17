@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "942417743600",
+    "firebase_url": "https://habitoaster.firebaseio.com",
+    "project_id": "habitoaster",
+    "storage_bucket": "habitoaster.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942417743600:android:322b91fc5292208c",
+        "android_client_info": {
+          "package_name": "org.sandec.habitoaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942417743600-7fqnsd4g95vhrsodemg81qi6mgnn7214.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.sandec.habitoaster",
+            "certificate_hash": "552a356746bf0d2dbdfce3e2b26f293d50e9737c"
+          }
+        },
+        {
+          "client_id": "942417743600-if75q0m5o3kf7sldqcpkadsv325oft5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeQ49E_-_gAJ6JkTUOyf3Apuj8oF-vHAA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942417743600-if75q0m5o3kf7sldqcpkadsv325oft5t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
