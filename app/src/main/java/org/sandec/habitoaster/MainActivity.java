@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.layout_untuk_fragment, new HomeFragment())
                     .commit();
         } else if (id == R.id.nav_add) {
-
+            Intent i = new Intent(MainActivity.this,AddHabitActivity.class);
+            startActivity(i);
         } else if (id == R.id.nav_today) {
 
         } else if (id == R.id.nav_reward) {
