@@ -1,5 +1,6 @@
 package org.sandec.habitoaster;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,8 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity
         manajer.beginTransaction()
                 .replace(R.id.layout_untuk_fragment, new HomeFragment())
                 .commit();
+
+        mAuth=FirebaseAuth.getInstance();
     }
 
     @Override
@@ -105,6 +111,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+
+        } else if (id == R.id.logout) {
+            mAuth.signOut();
+            Intent i = new Intent(MainActivity.this,login.class);
+            startActivity(i);
 
         }
 
