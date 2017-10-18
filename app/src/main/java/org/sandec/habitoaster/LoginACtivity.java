@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class login extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class LoginACtivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
 private static final String TAG = "AuthenticationActivity";
 private static final int RC_SIGN_IN = 9002;
@@ -46,7 +46,7 @@ private FirebaseAuth.AuthStateListener mAuthListener;
                     .build();
 
     //tambah sendiri setelah 1
-    mGoogleApiClient = new GoogleApiClient.Builder(login.this)
+    mGoogleApiClient = new GoogleApiClient.Builder(LoginACtivity.this)
             .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
             .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
             .build();
@@ -67,7 +67,7 @@ private FirebaseAuth.AuthStateListener mAuthListener;
             } else {
                 // User is signed out
                 Log.d(TAG, "onAuthStateChanged:signed_out");
-                Toast.makeText(login.this, "Anda Belum login.",
+                Toast.makeText(LoginACtivity.this, "Anda Belum LoginACtivity.",
                         Toast.LENGTH_SHORT).show();
             }
             // ...
@@ -102,11 +102,11 @@ private FirebaseAuth.AuthStateListener mAuthListener;
             GoogleSignInResult result = Auth.GoogleSignInApi
                     .getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                //jika login google sukses, maka daftarkan ke firebase
+                //jika LoginACtivity google sukses, maka daftarkan ke firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
-                // login gagal
+                // LoginACtivity gagal
                 Log.e(TAG, "Login Google Gagal.");
                 Toast.makeText(this, "Login Google Gagal.", Toast.LENGTH_SHORT).show();
             }
@@ -138,14 +138,14 @@ private FirebaseAuth.AuthStateListener mAuthListener;
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        //jika login gagal akan muncul pesan gagal
+                        //jika LoginACtivity gagal akan muncul pesan gagal
                         // jika sukses maka akan pindah ke MainActivity
                         if (!task.isSuccessful()) {
-                            Toast.makeText(login.this, "Authentication failed. "+task.getException(),
+                            Toast.makeText(LoginACtivity.this, "Authentication failed. "+task.getException(),
                                     Toast.LENGTH_SHORT).show();
                             Log.e(TAG, "onComplete: Failed ",task.getException());
                         } else {
-                            Toast.makeText(login.this, "Authentication success.",
+                            Toast.makeText(LoginACtivity.this, "Authentication success.",
                                     Toast.LENGTH_SHORT).show();
                             masukAplikasiUtama();
                         }
@@ -155,7 +155,7 @@ private FirebaseAuth.AuthStateListener mAuthListener;
 
     //lanjutan 3
     private void masukAplikasiUtama() {
-        startActivity(new Intent(login.this, MainActivity.class));
+        startActivity(new Intent(LoginACtivity.this, MainActivity.class));
         finish();
     }
 
