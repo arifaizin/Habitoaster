@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        swLayout = (SwipeRefreshLayout) v.findViewById(R.id.swlayout);
+        swLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefresh);
 
         llayout = (LinearLayout) v.findViewById(R.id.detail_content);
 
