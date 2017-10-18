@@ -17,10 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,12 @@ public class MainActivity extends AppCompatActivity
                 .commit();
 
         mAuth=FirebaseAuth.getInstance();
+        extractUserData();
+    }
+
+    private void extractUserData() {
+        firebaseUser = mAuth.getCurrentUser();
+        String userId = firebaseUser.getUid();
     }
 
     @Override
@@ -115,7 +123,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.logout) {
             mAuth.signOut();
-            Intent i = new Intent(MainActivity.this,login.class);
+            Intent i = new Intent(MainActivity.this,LoginACtivity.class);
             startActivity(i);
 
         }
