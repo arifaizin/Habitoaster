@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -36,6 +38,11 @@ private FirebaseAuth.AuthStateListener mAuthListener;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+    YoYo.with(Techniques.FadeIn)
+            .duration(4000)
+            .playOn(findViewById(R.id.fbs));
+
 
     //TODO 4: Authentication
     //1
@@ -67,8 +74,8 @@ private FirebaseAuth.AuthStateListener mAuthListener;
             } else {
                 // User is signed out
                 Log.d(TAG, "onAuthStateChanged:signed_out");
-                Toast.makeText(login.this, "Anda Belum login.",
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(login.this, "Anda Belum login.",
+//                        Toast.LENGTH_SHORT).show();
             }
             // ...
         }
