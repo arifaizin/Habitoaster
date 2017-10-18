@@ -16,13 +16,25 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.shawnlin.numberpicker.NumberPicker;
+
+import org.sandec.habitoaster.model.Habit;
+import org.sandec.habitoaster.model.User;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.R.attr.name;
 
 public class AddHabitActivity extends AppCompatActivity {
 
@@ -49,6 +61,17 @@ public class AddHabitActivity extends AppCompatActivity {
     int finalNumberOfDays;
     boolean finalNotifications;
     String finalNotificationsTime;
+    String finalCreatedDate;
+    String finalCompletedDate;
+    int finalCompletedDays;
+    boolean finalIsCompleted;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference mDatabase;
+    private String userId;
+    private String userEmail;
+    private String pushId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +80,15 @@ public class AddHabitActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         setupDurationDaysPicker();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        userId = firebaseUser.getUid();
+        userEmail = firebaseUser.getEmail();
+        pushId = mDatabase.child("users").child(userId).push().getKey();
+        User user = new User(userId, userEmail, pushId);
+        mDatabase.child("users").child(userId).setValue(user);
     }
 
     @Override
@@ -118,10 +150,24 @@ public class AddHabitActivity extends AppCompatActivity {
         finalNumberOfDays = numberPickerDays.getValue();
         finalNotifications = toggleNotifications.isChecked();
         finalNotificationsTime = btnNotificationsTime.getText().toString();
+
+        Date dt = new Date();
+        String date = dt.getDate() + "-" + dt.getMonth() + "-" + dt.getYear();
+        int hours = dt.getHours();
+        int minutes = dt.getMinutes();
+        int seconds = dt.getSeconds();
+        finalCreatedDate = date + ":" + hours + ":" + minutes + ":" + seconds;
+        finalCompletedDate = "null";
+
+        finalCompletedDays = 0;
+        finalIsCompleted = false;
     }
 
     private void uploadHabitDataToServer() {
-
+        Habit habit = new Habit(finalHabitName, finalNumberOfDays, finalNotifications, finalNotificationsTime,
+                finalCreatedDate, finalCompletedDate, finalCompletedDays, finalIsCompleted);
+        String habitPushId = mDatabase.child("users").child(userId).push().getKey();
+        mDatabase.child("users").child(userId).child("habits").child(finalCreatedDate + "---" + finalHabitName).setValue(habit);
     }
 
     @OnClick({R.id.toggle_notifications, R.id.btn_notifications_time, R.id.fab})
@@ -190,6 +236,7 @@ public class AddHabitActivity extends AppCompatActivity {
             case R.id.fab:
                 collectHabitData();
                 uploadHabitDataToServer();
+                Toast.makeText(AddHabitActivity.this, "Add habit success.", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

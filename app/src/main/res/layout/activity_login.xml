@@ -6,7 +6,7 @@
     android:background="@drawable/bglogin"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="org.sandec.habitoaster.login">
+    tools:context="org.sandec.habitoaster.LoginACtivity">
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="HABITOASTER"
         android:textSize="40dp"
-        android:textColor="@android:color/holo_orange_dark"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:id="@+id/textView"
         android:layout_marginTop="21dp" />

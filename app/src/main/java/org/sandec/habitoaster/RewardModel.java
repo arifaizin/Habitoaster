@@ -24,8 +24,7 @@ public class RewardModel {
     public RewardModel() {
     }
 
-    public RewardModel(String id, String nama, String gambar, String point) {
-        this.id = id;
+    public RewardModel(String nama, String point, String gambar) {
         this.nama = nama;
         this.gambar = gambar;
         this.point = point;
