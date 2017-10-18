@@ -16,13 +16,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.sandec.habitoaster.utils.Analytics;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,10 @@ public class MainActivity extends AppCompatActivity
     private void extractUserData() {
         firebaseUser = mAuth.getCurrentUser();
         String userId = firebaseUser.getUid();
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setUserProperty("user_id", "userId");
+        mFirebaseAnalytics.setCurrentScreen(this, "Main Activity", null /* class override */);
     }
 
     @Override
@@ -103,25 +111,32 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
+            Analytics.logEventSelectContent("Nav drawer 1", "Home", "menu item", mFirebaseAnalytics);
             FragmentManager manajer = getSupportFragmentManager();
             manajer.beginTransaction()
                     .replace(R.id.layout_untuk_fragment, new HomeFragment())
                     .commit();
         } else if (id == R.id.nav_add) {
+            Analytics.logEventSelectContent("Nav drawer 2", "Add habit", "menu item", mFirebaseAnalytics);
             Intent i = new Intent(MainActivity.this,AddHabitActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_today) {
+            Analytics.logEventSelectContent("Nav drawer 3", "Target today", "menu item", mFirebaseAnalytics);
 
         } else if (id == R.id.nav_reward) {
+            Analytics.logEventSelectContent("Nav drawer 4", "Reward", "menu item", mFirebaseAnalytics);
             FragmentManager manajer = getSupportFragmentManager();
             manajer.beginTransaction()
                     .replace(R.id.layout_untuk_fragment, new RewardFragment())
                     .commit();
         } else if (id == R.id.nav_share) {
+            Analytics.logEventSelectContent("Nav drawer 5", "Share", "menu item", mFirebaseAnalytics);
 
         } else if (id == R.id.nav_send) {
+            Analytics.logEventSelectContent("Nav drawer 6", "Send", "menu item", mFirebaseAnalytics);
 
         } else if (id == R.id.logout) {
+            Analytics.logEventSelectContent("Nav drawer 7", "Log out", "menu item", mFirebaseAnalytics);
             mAuth.signOut();
             Intent i = new Intent(MainActivity.this,LoginACtivity.class);
             startActivity(i);
