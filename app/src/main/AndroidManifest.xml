@@ -30,7 +30,14 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+<<<<<<< Updated upstream
 
+=======
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3fc2d068222247299c96be1ed395ebf8e542af16" />
+>>>>>>> Stashed changes
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
