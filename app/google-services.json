@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "942417743600-0lvoc17ve4j1rggvqr9nii7p1r2iepvn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.sandec.habitoaster",
+            "certificate_hash": "3c27d1d81ac921cfcf1a15580a3af01b2f6132e3"
+          }
+        },
+        {
+          "client_id": "942417743600-1nis4quafiaq83klbqsbcau0imun0ke3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.sandec.habitoaster",
+            "certificate_hash": "5d0f819a312c42adff6f3d07865ead481dd81036"
+          }
+        },
+        {
           "client_id": "942417743600-5q5vk54tv6dj27pvthh1jg32giik6tk2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
